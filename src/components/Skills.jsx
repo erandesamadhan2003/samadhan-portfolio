@@ -11,8 +11,10 @@ import {
 } from 'react-icons/fa6'
 import {
   SiAngular as AngularIcon,
+  SiC as CIcon,
   SiCplusplus as CppIcon,
   SiDocker as DockerIcon,
+  SiDotnet as DotnetIcon,
   SiEthers as EthersIcon,
   SiEthereum as EthereumIcon,
   SiExpress as ExpressIcon,
@@ -30,12 +32,16 @@ import {
   SiPrometheus as PrometheusIcon,
   SiPython as PythonIcon,
   SiReact as ReactIcon,
+  SiReactquery as ReactQueryIcon,
+  SiRedis as RedisIcon,
+  SiRedux as ReduxIcon,
   SiSocketdotio as SocketIcon,
   SiSolidity as SolidityIcon,
   SiSupabase as SupabaseIcon,
   SiTerraform as TerraformIcon,
   SiTypescript as TypescriptIcon,
 } from 'react-icons/si'
+import { TbBrandCSharp as CSharpIcon } from 'react-icons/tb'
 import InteractiveTerminal from './InteractiveTerminal'
 
 /* ─── DATA ─────────────────────────────────────────────────── */
@@ -63,13 +69,15 @@ const NAMESPACES = [
     id: 'frontend',
     label: 'namespace/frontend',
     status: 'Running',
-    accent: '#FF7A00',
+    accent: '#34d399',
     pods: [
       { name: 'React.js', icon: ReactIcon, color: '#22d3ee' },
       { name: 'Angular', icon: AngularIcon, color: '#f87171' },
       { name: 'TypeScript', icon: TypescriptIcon, color: '#38bdf8' },
       { name: 'JavaScript', icon: JavascriptIcon, color: '#facc15' },
       { name: 'React Native', icon: MonitorSmartphone, color: '#f472b6' },
+      { name: 'Redux', icon: ReduxIcon, color: '#764abc' },
+      { name: 'TanStack Query', icon: ReactQueryIcon, color: '#ff4154' },
       { name: 'WebSockets', icon: SocketIcon, color: '#34d399' },
     ],
   },
@@ -77,20 +85,32 @@ const NAMESPACES = [
     id: 'backend',
     label: 'namespace/backend',
     status: 'Running',
-    accent: '#FFB347',
+    accent: '#fb923c',
     pods: [
       { name: 'Node.js', icon: NodeIcon, color: '#4ade80' },
       { name: 'Express.js', icon: ExpressIcon, color: '#fbbf24' },
-      { name: 'Python', icon: PythonIcon, color: '#a3e635' },
-      { name: 'C / C++', icon: CppIcon, color: '#cbd5e1' },
+      { name: 'ASP.NET Core', icon: DotnetIcon, color: '#512bd4' },
+      { name: 'Redis', icon: RedisIcon, color: '#dc2626' },
       { name: 'REST APIs', icon: ApiIcon, color: '#fb923c' },
+    ],
+  },
+  {
+    id: 'language',
+    label: 'namespace/language',
+    status: 'Running',
+    accent: '#facc15',
+    pods: [
+      { name: 'C', icon: CIcon, color: '#3b82f6' },
+      { name: 'C++', icon: CppIcon, color: '#2563eb' },
+      { name: 'C#', icon: CSharpIcon, color: '#16a34a' },
+      { name: 'Python', icon: PythonIcon, color: '#eab308' },
     ],
   },
   {
     id: 'databases',
     label: 'namespace/databases',
     status: 'Running',
-    accent: '#C0C0C0',
+    accent: '#a78bfa',
     pods: [
       { name: 'MongoDB', icon: MongoIcon, color: '#34d399' },
       { name: 'PostgreSQL', icon: PostgresIcon, color: '#a78bfa' },
@@ -103,7 +123,7 @@ const NAMESPACES = [
     id: 'blockchain',
     label: 'namespace/blockchain',
     status: 'Running',
-    accent: '#a78bfa',
+    accent: '#f472b6',
     pods: [
       { name: 'Ethereum', icon: EthereumIcon, color: '#22d3ee' },
       { name: 'Hardhat', icon: Hammer, color: '#fb923c' },
@@ -123,14 +143,15 @@ const LOG_LINES = [
   { t: 1000, text: 'backend       Active   62d', color: '#FFB347' },
   { t: 1300, text: 'databases     Active   58d', color: '#C0C0C0' },
   { t: 1600, text: 'blockchain    Active   41d', color: '#a78bfa' },
-  { t: 2100, text: '$ kubectl get pods --all-namespaces | wc -l', color: '#FF7A00' },
-  { t: 2600, text: '31', color: '#4ade80' },
-  { t: 3000, text: '$ helm list -n devops', color: '#FF7A00' },
-  { t: 3400, text: 'monitoring    DEPLOYED   prometheus-2.47.0', color: '#f97316' },
-  { t: 3800, text: 'ingress       DEPLOYED   nginx-ingress-4.8.3', color: '#fbbf24' },
-  { t: 4200, text: '$ terraform show | grep "resource"', color: '#FF7A00' },
-  { t: 4700, text: '# aws_eks_cluster.main: resource "aws_eks_cluster"', color: '#fb923c' },
-  { t: 5200, text: '$ All systems operational ✓', color: '#4ade80' },
+  { t: 1850, text: 'language      Active   74d', color: '#facc15' },
+  { t: 2300, text: '$ kubectl get pods --all-namespaces | wc -l', color: '#FF7A00' },
+  { t: 2800, text: '36', color: '#4ade80' },
+  { t: 3200, text: '$ helm list -n devops', color: '#FF7A00' },
+  { t: 3600, text: 'monitoring    DEPLOYED   prometheus-2.47.0', color: '#f97316' },
+  { t: 4000, text: 'ingress       DEPLOYED   nginx-ingress-4.8.3', color: '#fbbf24' },
+  { t: 4400, text: '$ terraform show | grep "resource"', color: '#FF7A00' },
+  { t: 4900, text: '# aws_eks_cluster.main: resource "aws_eks_cluster"', color: '#fb923c' },
+  { t: 5400, text: '$ All systems operational ✓', color: '#4ade80' },
 ]
 
 function TerminalLog() {
@@ -156,7 +177,7 @@ function TerminalLog() {
         <div className="w-3 h-3 rounded-full bg-[#FF5F57]" />
         <div className="w-3 h-3 rounded-full bg-[#FEBC2E]" />
         <div className="w-3 h-3 rounded-full bg-[#28C840]" />
-        <span className="ml-3 font-mono text-[11px] text-[#444]">samadhan@k8s-cluster ~ %</span>
+        <span className="ml-3 font-mono text-[11px] text-[#888]">samadhan@k8s-cluster ~ %</span>
         <span className="ml-auto font-mono text-[10px] text-[#FF7A00] flex items-center gap-1.5">
           <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80] inline-block animate-pulse" />
           CLUSTER LIVE
@@ -241,7 +262,7 @@ function Pod({ pod, nsAccent, index }) {
       {/* Pod label */}
       <span
         className="font-mono text-[10px] text-center leading-tight transition-colors duration-200 max-w-[72px]"
-        style={{ color: hovered ? pod.color : '#666' }}
+        style={{ color: hovered ? pod.color : '#bbb' }}
       >
         {pod.name}
       </span>
@@ -280,9 +301,9 @@ function NamespaceCard({ ns, delay }) {
       ref={ref}
       className="relative rounded-2xl overflow-hidden"
       style={{
-        border: `1px solid ${ns.accent}25`,
-        background: 'rgba(10,10,10,0.85)',
-        boxShadow: `inset 0 0 60px ${ns.accent}08`,
+        border: `1px solid ${ns.accent}30`,
+        background: `linear-gradient(160deg, ${ns.accent}06 0%, rgba(8,8,8,0.97) 55%)`,
+        boxShadow: `inset 0 0 60px ${ns.accent}06, 0 4px 30px rgba(0,0,0,0.4)`,
       }}
       initial={{ opacity: 0, y: 32 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -319,7 +340,7 @@ function NamespaceCard({ ns, delay }) {
         <div className="flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80] animate-pulse" />
           <span className="font-mono text-[9px] text-[#4ade80] uppercase tracking-widest">{ns.status}</span>
-          <span className="font-mono text-[9px] text-[#444] ml-2">{ns.pods.length} pods</span>
+          <span className="font-mono text-[9px] text-[#888] ml-2">{ns.pods.length} pods</span>
         </div>
       </div>
 
@@ -329,7 +350,7 @@ function NamespaceCard({ ns, delay }) {
         <div className="flex items-center gap-2 mb-5">
           <div className="w-2 h-2 rounded-full" style={{ background: ns.accent, boxShadow: `0 0 8px ${ns.accent}` }} />
           <div className="flex-1 h-px" style={{ background: `linear-gradient(90deg, ${ns.accent}60, transparent)` }} />
-          <span className="font-mono text-[9px] text-[#333] uppercase tracking-widest">
+          <span className="font-mono text-[9px] text-[#777] uppercase tracking-widest">
             replica-set/{ns.id}-rs
           </span>
         </div>
@@ -342,11 +363,11 @@ function NamespaceCard({ ns, delay }) {
 
         {/* resource line bottom */}
         <div className="flex items-center gap-3 mt-5 pt-4 border-t" style={{ borderColor: 'rgba(255,255,255,0.04)' }}>
-          <span className="font-mono text-[9px] text-[#333]">cpu: healthy</span>
-          <span className="w-px h-3 bg-[#222]" />
-          <span className="font-mono text-[9px] text-[#333]">mem: ok</span>
-          <span className="w-px h-3 bg-[#222]" />
-          <span className="font-mono text-[9px]" style={{ color: `${ns.accent}80` }}>
+          <span className="font-mono text-[9px] text-[#777]">cpu: healthy</span>
+          <span className="w-px h-3 bg-[#333]" />
+          <span className="font-mono text-[9px] text-[#777]">mem: ok</span>
+          <span className="w-px h-3 bg-[#333]" />
+          <span className="font-mono text-[9px]" style={{ color: `${ns.accent}cc` }}>
             last-sync: 0s ago
           </span>
         </div>

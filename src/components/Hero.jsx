@@ -5,6 +5,9 @@ import {
   FaLinkedin as Linkedin,
   FaEnvelope as Mail,
   FaArrowDown as ArrowDown,
+  FaFilePdf as FilePdf,
+  FaXmark as XMark,
+  FaDownload as DownloadIcon,
 } from 'react-icons/fa6'
 import {
   SiKubernetes as KubernetesIcon,
@@ -76,8 +79,91 @@ const floatingCards = [
   },
 ]
 
+function ResumeModal({ onClose }) {
+  useEffect(() => {
+    const handler = (e) => { if (e.key === 'Escape') onClose() }
+    document.addEventListener('keydown', handler)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', handler)
+      document.body.style.overflow = ''
+    }
+  }, [onClose])
+
+  return (
+    <AnimatePresence>
+      <motion.div
+        className="fixed inset-0 z-[999] flex items-center justify-center p-4"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
+        {/* Backdrop */}
+        <motion.div
+          className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+          onClick={onClose}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        />
+
+        {/* Modal panel */}
+        <motion.div
+          className="relative z-10 w-full max-w-4xl h-[90vh] rounded-2xl overflow-hidden flex flex-col"
+          style={{
+            background: '#0F0F0F',
+            border: '1px solid rgba(255,179,71,0.25)',
+            boxShadow: '0 0 80px rgba(255,122,0,0.15), 0 40px 80px rgba(0,0,0,0.7)',
+          }}
+          initial={{ opacity: 0, scale: 0.92, y: 30 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.92, y: 30 }}
+          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {/* Title bar */}
+          <div
+            className="flex items-center justify-between px-5 py-3 border-b flex-shrink-0"
+            style={{ borderColor: 'rgba(255,179,71,0.15)', background: 'rgba(255,122,0,0.04)' }}
+          >
+            <div className="flex items-center gap-3">
+              <FilePdf size={14} style={{ color: '#FFB347' }} />
+              <span className="font-mono text-[11px] uppercase tracking-widest text-[#FFB347]">Resume — Samadhan Erande</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <a
+                href="/Samadhan_Subhash_Erande.pdf"
+                download="Samadhan_Subhash_Erande.pdf"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-mono font-semibold transition-all hover:-translate-y-0.5"
+                style={{ background: 'rgba(255,179,71,0.12)', border: '1px solid rgba(255,179,71,0.3)', color: '#FFB347' }}
+              >
+                <DownloadIcon size={11} /> Download
+              </a>
+              <button
+                onClick={onClose}
+                className="flex items-center justify-center w-8 h-8 rounded-lg text-[#555] hover:text-[#FF7A00] hover:bg-[rgba(255,122,0,0.1)] transition-all"
+              >
+                <XMark size={16} />
+              </button>
+            </div>
+          </div>
+
+          {/* PDF iframe */}
+          <div className="flex-1 overflow-hidden">
+            <iframe
+              src="/Samadhan_Subhash_Erande.pdf"
+              className="w-full h-full"
+              title="Samadhan Erande Resume"
+              style={{ border: 'none', background: '#1a1a1a' }}
+            />
+          </div>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
+  )
+}
+
 export default function Hero() {
   const [titleIndex, setTitleIndex] = useState(0)
+  const [showResume, setShowResume] = useState(false)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -219,6 +305,18 @@ export default function Hero() {
             >
               GitHub Profile
             </a>
+            <button
+              onClick={() => setShowResume(true)}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(255,179,71,0.25)]"
+              style={{
+                background: 'linear-gradient(135deg, rgba(255,179,71,0.15), rgba(255,122,0,0.08))',
+                border: '1px solid rgba(255,179,71,0.35)',
+                color: '#FFB347',
+              }}
+            >
+              <FilePdf size={14} />
+              Resume
+            </button>
           </motion.div>
 
           {/* Socials */}
@@ -315,6 +413,9 @@ export default function Hero() {
           to { transform: translateX(-50%); }
         }
       `}</style>
+
+      {/* Resume PDF Modal */}
+      {showResume && <ResumeModal onClose={() => setShowResume(false)} />}
     </section>
   )
 }

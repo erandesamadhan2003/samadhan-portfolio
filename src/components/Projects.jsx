@@ -14,18 +14,26 @@ import {
   FaWallet as Wallet,
   FaUsers as Users,
   FaDatabase as Database,
+  FaCloud as Cloud,
+  FaCodeBranch as GitBranch,
+  FaCube as Cube,
+  FaLayerGroup as Layers,
+  FaKey as Key,
+  FaXmark as XMark,
+  FaExpand as ExpandIcon,
 } from 'react-icons/fa6'
+import { SiKubernetes, SiHelm, SiGithubactions } from 'react-icons/si'
 
 const FILTERS = ['All', 'DevOps', 'Blockchain', 'Systems', 'Full Stack', 'Real-Time', 'Mobile']
 
 const projects = [
   {
-    title: 'SecureVote',
-    subtitle: 'Blockchain E-Voting DApp',
-    desc: 'Decentralized e-voting platform on Ethereum with Solidity smart contracts. Role-based access control, cryptographic verification, and immutable voting records — zero centralized manipulation risk.',
-    stack: ['Solidity', 'Ethereum', 'Ethers.js', 'Hardhat', 'OpenZeppelin'],
-    github: 'https://github.com/erandesamadhan2003/SecureVote-Blockchain',
-    accent: '#FF7A00', icon: ShieldCheck, tag: 'Blockchain', filter: 'Blockchain',
+    title: 'EmPay HRMS',
+    subtitle: 'HR & Payroll Management System',
+    desc: 'Production-grade cloud-native HRMS on Azure Kubernetes Service — automated CI/CD via GitHub Actions, Terraform-managed infrastructure, and full DevOps pipeline.',
+    stack: ['React + Vite', 'Node.js', 'PostgreSQL 15', 'Redis 6', 'AKS', 'Terraform', 'Helm', 'GitHub Actions'],
+    github: 'https://github.com/erandesamadhan2003/EmPay_HRMS',
+    accent: '#38bdf8', icon: Cloud, tag: 'DevOps + Full Stack', filter: ['Full Stack', 'DevOps'],
   },
   {
     title: 'CoCode',
@@ -33,39 +41,15 @@ const projects = [
     desc: '50+ concurrent users, low-latency sync via WebSockets, shared rooms, real-time code updates. HackIIITV 2025 winning project.',
     stack: ['React.js', 'Node.js', 'Socket.io', 'WebSockets'],
     github: 'https://github.com/erandesamadhan2003/hackIIITV',
-    accent: '#FFB347', icon: Zap, tag: '🏆 HackIIITV Winner', filter: 'Real-Time',
+    accent: '#34d399', icon: Zap, tag: '🏆 HackIIITV Winner', filter: 'Real-Time',
   },
   {
-    title: 'Custom Unix Shell',
-    subtitle: 'Systems Programming in C++',
-    desc: 'Feature-rich shell from scratch — command parsing, execution, piping, chaining, process management, intelligent tab-completion. Replicates core Unix shell behavior.',
-    stack: ['C++', 'Unix System Calls', 'Process Management'],
-    github: 'https://github.com/erandesamadhan2003/shell',
-    accent: '#C0C0C0', icon: Terminal, tag: 'Systems', filter: 'Systems',
-  },
-  {
-    title: 'Custom HTTP Server',
-    subtitle: 'Network Systems Programming',
-    desc: 'HTTP/1.1 server from scratch — request parsing, response generation, connection handling, static file serving. Zero frameworks.',
-    stack: ['C++', 'TCP/IP', 'HTTP Protocol', 'POSIX Sockets'],
-    github: 'https://github.com/erandesamadhan2003/HTTP-Server',
-    accent: '#FF7A00', icon: Server, tag: 'Systems', filter: 'Systems',
-  },
-  {
-    title: 'High-Availability Module Hot-Swap',
-    subtitle: 'Infrastructure Engineering',
-    desc: 'Zero-downtime module hot-swapping system. Advanced process management, dynamic loading, and fault-tolerant system design for production workloads.',
-    stack: ['C++', 'Linux', 'IPC', 'Process Management', 'Dynamic Loading'],
-    github: 'https://github.com/erandesamadhan2003/High-Availability-Module-Hot-Swap',
-    accent: '#FFB347', icon: RefreshCw, tag: 'Systems', filter: 'Systems',
-  },
-  {
-    title: 'SketchNSnort',
-    subtitle: 'Real-Time Multiplayer Drawing Game',
-    desc: 'Multiplayer drawing game with real-time canvas sync, live game state across players, and low-latency interaction at scale.',
-    stack: ['React.js', 'Node.js', 'WebSockets', 'Socket.io', 'Canvas API'],
-    github: 'https://github.com/erandesamadhan2003/Scribble',
-    accent: '#C0C0C0', icon: Gamepad2, tag: 'Real-Time', filter: 'Real-Time',
+    title: 'SecureVote',
+    subtitle: 'Blockchain E-Voting DApp',
+    desc: 'Decentralized e-voting platform on Ethereum with Solidity smart contracts. Role-based access control, cryptographic verification, and immutable voting records — zero centralized manipulation risk.',
+    stack: ['Solidity', 'Ethereum', 'Ethers.js', 'Hardhat', 'OpenZeppelin'],
+    github: 'https://github.com/erandesamadhan2003/SecureVote-Blockchain',
+    accent: '#a78bfa', icon: ShieldCheck, tag: 'Blockchain', filter: 'Blockchain',
   },
   {
     title: 'WalletPulse',
@@ -73,15 +57,39 @@ const projects = [
     desc: 'Comprehensive finance platform — expense tracking, budget planning, financial analytics, real-time dashboards with interactive charts.',
     stack: ['React.js', 'Node.js', 'MongoDB', 'Express.js', 'Chart.js'],
     github: 'https://github.com/erandesamadhan2003/WalletPulse',
-    accent: '#FF7A00', icon: Wallet, tag: 'Full Stack + DevOps', filter: ['Full Stack', 'DevOps'],
+    accent: '#4ade80', icon: Wallet, tag: 'Full Stack + DevOps', filter: ['Full Stack', 'DevOps'],
   },
   {
-    title: 'EmPay HRMS',
-    subtitle: 'HR & Payroll Management System',
-    desc: 'Full-featured HR management — employee records, attendance, payroll processing, leave management, analytics dashboards.',
-    stack: ['React.js', 'Node.js', 'PostgreSQL', 'Express.js', 'Redux'],
-    github: 'https://github.com/erandesamadhan2003/EmPay_HRMS',
-    accent: '#FFB347', icon: Users, tag: 'Full Stack', filter: 'Full Stack',
+    title: 'High-Availability Module Hot-Swap',
+    subtitle: 'Infrastructure Engineering',
+    desc: 'Zero-downtime module hot-swapping system. Advanced process management, dynamic loading, and fault-tolerant system design for production workloads.',
+    stack: ['C++', 'Linux', 'IPC', 'Process Management', 'Dynamic Loading'],
+    github: 'https://github.com/erandesamadhan2003/High-Availability-Module-Hot-Swap',
+    accent: '#facc15', icon: RefreshCw, tag: 'Systems', filter: 'Systems',
+  },
+  {
+    title: 'Custom HTTP Server',
+    subtitle: 'Network Systems Programming',
+    desc: 'HTTP/1.1 server from scratch — request parsing, response generation, connection handling, static file serving. Zero frameworks.',
+    stack: ['C++', 'TCP/IP', 'HTTP Protocol', 'POSIX Sockets'],
+    github: 'https://github.com/erandesamadhan2003/HTTP-Server',
+    accent: '#fb923c', icon: Server, tag: 'Systems', filter: 'Systems',
+  },
+  {
+    title: 'Custom Unix Shell',
+    subtitle: 'Systems Programming in C++',
+    desc: 'Feature-rich shell from scratch — command parsing, execution, piping, chaining, process management, intelligent tab-completion. Replicates core Unix shell behavior.',
+    stack: ['C++', 'Unix System Calls', 'Process Management'],
+    github: 'https://github.com/erandesamadhan2003/shell',
+    accent: '#f472b6', icon: Terminal, tag: 'Systems', filter: 'Systems',
+  },
+  {
+    title: 'SketchNSnort',
+    subtitle: 'Real-Time Multiplayer Drawing Game',
+    desc: 'Multiplayer drawing game with real-time canvas sync, live game state across players, and low-latency interaction at scale.',
+    stack: ['React.js', 'Node.js', 'WebSockets', 'Socket.io', 'Canvas API'],
+    github: 'https://github.com/erandesamadhan2003/Scribble',
+    accent: '#22d3ee', icon: Gamepad2, tag: 'Real-Time', filter: 'Real-Time',
   },
   {
     title: 'Redis (C++)',
@@ -89,7 +97,7 @@ const projects = [
     desc: 'Implementing a Redis-like in-memory key-value store in C++ — core commands, persistence, and pub/sub. Currently in active development.',
     stack: ['C++', 'TCP/IP', 'Persistence', 'Pub/Sub'],
     github: 'https://github.com/erandesamadhan2003/Redis',
-    accent: '#C0C0C0', icon: Database, tag: 'Systems', filter: 'Systems',
+    accent: '#f87171', icon: Database, tag: 'Systems', filter: 'Systems',
   },
 ]
 
@@ -106,38 +114,278 @@ function FadeIn({ children, delay = 0, className = '' }) {
   )
 }
 
-function ProjectCard({ project, index }) {
+function ArchModal({ onClose }) {
+  return (
+    <AnimatePresence>
+      <motion.div
+        className="fixed inset-0 z-[999] flex items-center justify-center p-4"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
+        <motion.div
+          className="absolute inset-0 bg-black/85 backdrop-blur-md"
+          onClick={onClose}
+        />
+        <motion.div
+          className="relative z-10 w-full max-w-5xl rounded-2xl overflow-hidden"
+          style={{
+            border: '1px solid rgba(34,211,238,0.25)',
+            boxShadow: '0 0 80px rgba(34,211,238,0.12), 0 40px 80px rgba(0,0,0,0.7)',
+            background: '#0A0A0A',
+          }}
+          initial={{ opacity: 0, scale: 0.9, y: 30 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.9, y: 30 }}
+          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {/* Header */}
+          <div
+            className="flex items-center justify-between px-5 py-3 border-b"
+            style={{ borderColor: 'rgba(34,211,238,0.15)', background: 'rgba(34,211,238,0.04)' }}
+          >
+            <span className="font-mono text-[11px] uppercase tracking-widest text-[#22d3ee]">
+              EmPay HRMS — DevOps Architecture
+            </span>
+            <button
+              onClick={onClose}
+              className="flex items-center justify-center w-8 h-8 rounded-lg text-[#555] hover:text-[#22d3ee] hover:bg-[rgba(34,211,238,0.1)] transition-all"
+            >
+              <XMark size={16} />
+            </button>
+          </div>
+          {/* Full image */}
+          <img
+            src="/DevOpsArchitecture.png"
+            alt="EmPay HRMS DevOps Architecture"
+            className="w-full h-auto block"
+            style={{ maxHeight: '80vh', objectFit: 'contain' }}
+          />
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
+  )
+}
+
+const PIPELINE_STEPS = [
+  { label: 'Git Push', icon: GitBranch, color: '#a78bfa' },
+  { label: 'CI Tests', icon: Zap, color: '#4ade80' },
+  { label: 'Build & Push', icon: Cube, color: '#22d3ee' },
+  { label: 'Helm Deploy', icon: SiHelm, color: '#FF7A00' },
+  { label: 'Live ✓', icon: Cloud, color: '#4ade80' },
+]
+
+const TECH_GROUPS = [
+  {
+    label: 'Application',
+    icon: Layers,
+    color: '#38bdf8',
+    items: ['React + Vite', 'Node.js + Express', 'PostgreSQL 15', 'Redis 6 Alpine', 'Swagger UI'],
+  },
+  {
+    label: 'Cloud & Infra',
+    icon: Cloud,
+    color: '#22d3ee',
+    items: ['Azure (AKS)', 'Azure Container Registry', 'Azure Key Vault', 'Log Analytics', 'VNet + NSGs'],
+  },
+  {
+    label: 'DevOps',
+    icon: SiGithubactions,
+    color: '#FF7A00',
+    items: ['GitHub Actions (3 workflows)', 'Terraform IaC', 'Helm Chart', 'NGINX Ingress', 'HPA Autoscaling'],
+  },
+  {
+    label: 'Security',
+    icon: Key,
+    color: '#f472b6',
+    items: ['Azure Key Vault CSI', 'OIDC Workload Identity', 'AcrPull RBAC', 'Helm --atomic rollback'],
+  },
+]
+
+function FeaturedProjectCard({ onViewArch }) {
+  const [expanded, setExpanded] = useState(false)
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-40px' })
+
+  return (
+    <motion.div
+      ref={ref}
+      className="mb-8 rounded-2xl overflow-hidden relative group"
+      initial={{ opacity: 0, y: 40 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+      style={{
+        background: 'linear-gradient(135deg, rgba(34,211,238,0.06) 0%, rgba(15,15,15,0.95) 60%)',
+        border: '1px solid rgba(34,211,238,0.2)',
+        boxShadow: '0 0 60px rgba(34,211,238,0.06), 0 20px 60px rgba(0,0,0,0.4)',
+      }}
+    >
+      {/* Top accent bar */}
+      <div className="h-[2px] w-full" style={{ background: 'linear-gradient(90deg,#22d3ee,#a78bfa,transparent)' }} />
+
+      {/* Featured badge */}
+      <div className="absolute top-5 right-5 z-10">
+        <span
+          className="text-[10px] font-mono uppercase tracking-widest px-3 py-1 rounded-full"
+          style={{ background: 'rgba(34,211,238,0.15)', border: '1px solid rgba(34,211,238,0.3)', color: '#22d3ee' }}
+        >
+          ⭐ Featured · DevOps Showcase
+        </span>
+      </div>
+
+      <div className="p-6 lg:p-8 flex flex-col gap-5">
+        {/* Header */}
+        <div className="flex items-center gap-4 pr-28">
+          <div
+            className="flex items-center justify-center rounded-2xl flex-shrink-0"
+            style={{
+              width: 56, height: 56,
+              background: 'rgba(34,211,238,0.12)',
+              border: '1.5px solid rgba(34,211,238,0.35)',
+              boxShadow: '0 0 24px rgba(34,211,238,0.18)',
+            }}
+          >
+            <SiKubernetes size={28} style={{ color: '#22d3ee', filter: 'drop-shadow(0 0 6px #22d3ee88)' }} />
+          </div>
+          <div>
+            <h3 className="font-sora font-extrabold text-xl text-[#F5F5F5] leading-tight">EmPay HRMS</h3>
+            <p className="font-mono text-[11px] text-[#22d3ee] mt-0.5">Production · Cloud-Native · AKS</p>
+          </div>
+        </div>
+
+        <p className="text-[#bbb] text-sm leading-relaxed max-w-2xl">
+          A production-grade, cloud-native HR & Payroll Management System deployed on{' '}
+          <span className="text-[#22d3ee]">Azure Kubernetes Service</span> with a fully automated{' '}
+          <span className="text-[#FF7A00]">GitHub Actions CI/CD pipeline</span> and{' '}
+          <span className="text-[#a78bfa]">Terraform-managed infrastructure</span>.
+        </p>
+
+        {/* CI/CD Pipeline */}
+        <div>
+          <p className="font-mono text-[10px] uppercase tracking-widest text-[#888] mb-3">CI/CD Pipeline</p>
+          <div className="flex items-center gap-1 flex-wrap">
+            {PIPELINE_STEPS.map((step, i) => (
+              <div key={step.label} className="flex items-center gap-1">
+                <div
+                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[10px] font-mono"
+                  style={{ background: `${step.color}12`, border: `1px solid ${step.color}30`, color: step.color }}
+                >
+                  <step.icon size={10} />
+                  {step.label}
+                </div>
+                {i < PIPELINE_STEPS.length - 1 && (
+                  <span className="text-[#444] text-xs">→</span>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Tech groups (expandable) */}
+        <AnimatePresence>
+          {expanded && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.35 }}
+              className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 overflow-hidden"
+            >
+              {TECH_GROUPS.map((g) => (
+                <div
+                  key={g.label}
+                  className="rounded-xl p-3"
+                  style={{ background: `${g.color}08`, border: `1px solid ${g.color}20` }}
+                >
+                  <div className="flex items-center gap-2 mb-2">
+                    <g.icon size={12} style={{ color: g.color }} />
+                    <span className="font-mono text-[10px] uppercase tracking-widest" style={{ color: g.color }}>{g.label}</span>
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    {g.items.map((item) => (
+                      <span key={item} className="text-[11px] text-[#aaa] font-mono">· {item}</span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Actions */}
+        <div className="flex flex-wrap items-center gap-3 pt-1">
+          <a
+            href="https://github.com/erandesamadhan2003/EmPay_HRMS"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold transition-all hover:-translate-y-0.5"
+            style={{ background: 'rgba(34,211,238,0.1)', border: '1px solid rgba(34,211,238,0.3)', color: '#22d3ee' }}
+          >
+            <Github size={14} /> View on GitHub <ExternalLink size={10} />
+          </a>
+          <button
+            onClick={onViewArch}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold transition-all hover:-translate-y-0.5"
+            style={{ background: 'rgba(167,139,250,0.1)', border: '1px solid rgba(167,139,250,0.3)', color: '#a78bfa' }}
+          >
+            <ExpandIcon size={13} /> Architecture Diagram
+          </button>
+          <button
+            onClick={() => setExpanded(!expanded)}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold transition-colors"
+            style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', color: '#888' }}
+          >
+            {expanded ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
+            {expanded ? 'Less Details' : 'Full Stack Details'}
+          </button>
+        </div>
+      </div>
+
+      {/* Glow */}
+      <div
+        className="absolute top-0 left-0 w-64 h-64 rounded-full opacity-10 blur-3xl pointer-events-none"
+        style={{ background: '#22d3ee' }}
+      />
+    </motion.div>
+  )
+}
+
+function ProjectCard({ project, index, onViewArch }) {
   return (
     <motion.div
       className="glass rounded-2xl overflow-hidden h-full flex flex-col group transition-all duration-300 relative"
-      whileHover={{ y: -6, boxShadow: `0 20px 60px ${project.accent}25` }}
+      whileHover={{ y: -6, boxShadow: `0 20px 60px ${project.accent}30` }}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: (index % 3) * 0.07, duration: 0.5 }}
+      style={{
+        background: `linear-gradient(160deg, ${project.accent}05 0%, rgba(10,10,10,0.95) 60%)`,
+        border: `1px solid ${project.accent}20`,
+      }}
     >
       {/* Top accent bar */}
-      <div className="h-[2px] w-full" style={{ background: `linear-gradient(90deg,${project.accent},transparent)` }} />
+      <div className="h-[2px] w-full" style={{ background: `linear-gradient(90deg,${project.accent},${project.accent}40,transparent)` }} />
 
       <div className="p-6 flex flex-col h-full">
         {/* Header row: icon + tag */}
         <div className="flex items-start justify-between mb-5">
-          {/* Icon container — generous size, no clipping */}
+          {/* Icon container */}
           <div
-            className="flex items-center justify-center rounded-2xl transition-all duration-300 group-hover:scale-105"
+            className="flex items-center justify-center rounded-2xl transition-all duration-300 group-hover:scale-110"
             style={{
               width: 52,
               height: 52,
-              background: `${project.accent}18`,
+              background: `${project.accent}15`,
               border: `1.5px solid ${project.accent}40`,
-              boxShadow: `0 0 20px ${project.accent}15`,
+              boxShadow: `0 0 20px ${project.accent}18`,
             }}
           >
             <project.icon
               size={26}
               style={{
                 color: project.accent,
-                filter: `drop-shadow(0 0 4px ${project.accent}88)`,
+                filter: `drop-shadow(0 0 5px ${project.accent}99)`,
               }}
             />
           </div>
@@ -146,7 +394,7 @@ function ProjectCard({ project, index }) {
             className="text-[10px] font-mono uppercase tracking-widest px-2.5 py-1 rounded-md mt-1"
             style={{
               color: project.accent,
-              background: `${project.accent}15`,
+              background: `${project.accent}12`,
               border: `1px solid ${project.accent}30`,
             }}
           >
@@ -154,38 +402,60 @@ function ProjectCard({ project, index }) {
           </span>
         </div>
 
-        <h3 className="font-sora font-bold text-base text-[#F5F5F5] mb-0.5 group-hover:text-[#FF7A00] transition-colors">
+        <h3
+          className="font-sora font-bold text-base mb-0.5 transition-colors"
+          style={{ color: '#F5F5F5' }}
+        >
           {project.title}
         </h3>
-        <p className="font-mono text-[10px] text-[#555] mb-3">{project.subtitle}</p>
-        <p className="text-[#777] text-xs leading-relaxed flex-1">{project.desc}</p>
+        <p className="font-mono text-[10px] mb-3" style={{ color: `${project.accent}90` }}>{project.subtitle}</p>
+        <p className="text-[#aaa] text-xs leading-relaxed flex-1">{project.desc}</p>
 
         <div className="flex flex-wrap gap-1.5 my-4">
           {project.stack.map((tech) => (
             <span
               key={tech}
-              className="text-[9px] px-2 py-0.5 rounded bg-[#1C1C1C] text-[#666] border border-[rgba(255,255,255,0.05)] font-mono"
+              className="text-[9px] px-2 py-0.5 rounded font-mono"
+              style={{
+                background: `${project.accent}08`,
+                color: `${project.accent}cc`,
+                border: `1px solid ${project.accent}20`,
+              }}
             >
               {tech}
             </span>
           ))}
         </div>
 
-        <div className="border-t border-[rgba(255,255,255,0.05)] pt-4">
+        <div className="border-t pt-4 flex items-center gap-3 flex-wrap" style={{ borderColor: `${project.accent}15` }}>
           <a
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-xs font-semibold text-[#666] hover:text-[#FF7A00] transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-semibold transition-colors"
+            style={{ color: `${project.accent}99` }}
+            onMouseEnter={e => e.currentTarget.style.color = project.accent}
+            onMouseLeave={e => e.currentTarget.style.color = `${project.accent}99`}
           >
             <Github size={14} /> View Source <ExternalLink size={10} />
           </a>
+          {onViewArch && (
+            <button
+              onClick={onViewArch}
+              className="inline-flex items-center gap-1.5 text-xs font-semibold transition-colors"
+              style={{ color: '#a78bfa99' }}
+              onMouseEnter={e => e.currentTarget.style.color = '#a78bfa'}
+              onMouseLeave={e => e.currentTarget.style.color = '#a78bfa99'}
+            >
+              <ExpandIcon size={11} /> Architecture
+            </button>
+          )}
         </div>
       </div>
 
       {/* Hover glow corner */}
       <div
-        className="absolute top-0 right-0 w-24 h-24 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-500 blur-2xl pointer-events-none"
+        className="absolute top-0 right-0 w-32 h-32 rounded-full opacity-0 group-hover:opacity-15 transition-opacity duration-500 blur-2xl pointer-events-none"
         style={{ background: project.accent }}
       />
     </motion.div>
@@ -195,6 +465,7 @@ function ProjectCard({ project, index }) {
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('All')
   const [showAll, setShowAll] = useState(false)
+  const [showArch, setShowArch] = useState(false)
 
   const matches = (p, f) => {
     if (f === 'All') return true
@@ -256,7 +527,12 @@ export default function Projects() {
             transition={{ duration: 0.3 }}
           >
             {visible.map((project, i) => (
-              <ProjectCard key={project.title} project={project} index={i} />
+              <ProjectCard
+                key={project.title}
+                project={project}
+                index={i}
+                onViewArch={project.title === 'EmPay HRMS' ? () => setShowArch(true) : undefined}
+              />
             ))}
           </motion.div>
         </AnimatePresence>
@@ -275,6 +551,9 @@ export default function Projects() {
           </div>
         )}
       </div>
+
+      {/* Architecture Diagram Modal */}
+      {showArch && <ArchModal onClose={() => setShowArch(false)} />}
     </section>
   )
 }
